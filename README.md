@@ -1,9 +1,15 @@
-# Assignment: Comma separated values (CSV) using AJAX
+# Assignment: Comma separated values (CSV) + AJAX and MongoDB
 
 ![AJAX Image](http://www.svgopen.org/2008/papers/82-Web_Mapping_and_WebGIS_do_we_actually_need_to_use_SVG/ajax.jpg "AJAX Image")<br>
+![MongoDB Logo](http://cdn.rancher.com/wp-content/uploads/2016/01/26001728/mongodb-logo.png "MongoDB Logo")<br>
 [![Build Status](https://travis-ci.org/LambdaCode/AJAX-ECMA6-Modules-Files.svg?branch=master)](https://travis-ci.org/LambdaCode/AJAX-ECMA6-Modules-Files)
 
+
 ## INFO:
+
+### What is MongoDB?
+
+MongoDB is a cross-platform document-oriented database. Classified as a NoSQL database, MongoDB eschews the traditional table-based relational database structure in favor of JSON-like documents with dynamic schemas (MongoDB calls the format BSON), making the integration of data in certain types of applications easier and faster. <br>
 
 ### jQuery.get( url [, data ] [, success ] [, dataType ] )
 * url
@@ -49,6 +55,7 @@ Application: https://csvajaxrateam.herokuapp.com/ <br>
 Testing: https://csvajaxrateam.herokuapp.com/tests
 
 ## USED TECHNOLOGIES
+- MongoDB <br>
 - jQuery <br>
 - AJAX <br>
 - SASS <br>
