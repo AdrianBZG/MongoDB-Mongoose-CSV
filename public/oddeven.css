@@ -1,0 +1,18 @@
+.output tr:nth-child(odd)    { background-color:#eee; }
+.output tr:nth-child(even)   { background-color:#00FF66; }
+.error td{ background-color: red; }
+
+
+
+
+//background-color: $background-color
+
+//.button
+background-color: #4CAF50
+border: none
+color: white
+padding: 15px 32px
+text-align: center
+text-decoration: none
+display: inline-block
+font-size: 16px

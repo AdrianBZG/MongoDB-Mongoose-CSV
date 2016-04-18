@@ -1,0 +1,11 @@
+# Ignore modules from NodeJS
+node_modules
+
+# Ignore cache files from Sass
+.sass-cache/*
+
+# Ignoring PDF files
+*.pdf
+
+# Ignoring temp files
+*~
