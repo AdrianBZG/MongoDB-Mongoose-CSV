@@ -34,10 +34,10 @@
     "gulp-shell": "^0.4.0",
     "gulp-uglify": "^1.1.0",
     "gulp-util": "^3.0.7",
-	"gulp-watch": "*",
-	"gulp-gh-pages": "*",
-	"gulp-clean": "*",
-	"gulp-sass": "*",
+    "gulp-watch": "*",
+    "gulp-gh-pages": "*",
+    "gulp-clean": "*",
+    "gulp-sass": "*",
     "heroku": "^0.2.0",
     "karma": "^0.13.22",
     "karma-chai": "^0.1.0",
@@ -55,13 +55,13 @@
     "sinon": "^1.17.3"
   },
   "dependencies": {
-	"jquery": "*",
-	"mongoose": "*",
-	"ejs": "^2.4.1",
-    "express": "^4.13.4",
-    "underscore": "^1.8.3",
     "body-parser": "~1.12.0",
-    "express-ejs-layouts": "~1.1.0"
+    "ejs": "^2.4.1",
+    "express": "^4.13.4",
+    "express-ejs-layouts": "~1.1.0",
+    "jquery": "*",
+    "mongoose": "^4.4.12",
+    "underscore": "^1.8.3"
   },
   "engines": {
     "node": "4.2.1"
