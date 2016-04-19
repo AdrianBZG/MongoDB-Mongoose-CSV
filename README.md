@@ -50,9 +50,9 @@ The success callback function is passed the returned data, which will be an XML 
 ![Preview](http://i.imgur.com/s2DMXyr.png?1 "Preview")
 
 
-## HEROKU DEPLOYMENT
-Application: https://csvajaxrateam.herokuapp.com/ <br>
-Testing: https://csvajaxrateam.herokuapp.com/tests
+## C9.IO DEPLOYMENT
+Application: https://abc.c9.io/ <br>
+Testing: https://abc.c9.io/tests
 
 ## USED TECHNOLOGIES
 - MongoDB <br>
