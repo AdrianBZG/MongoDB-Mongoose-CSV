@@ -66,7 +66,7 @@ Testing: https://abc.c9.io/tests
 - Views (ExpressJS) <br>
 - ECMA 6 <br>
 - Event Handling <br>
-- PAAS Deployment (Heroku) <br>
+- PAAS Deployment (Cloud9) <br>
 - Version control + Collaboration (Git) <br>
 
 ## DEVELOPERS
