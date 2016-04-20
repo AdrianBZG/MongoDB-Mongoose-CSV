@@ -87,9 +87,18 @@ $(document).ready(() => {
           'json'
         );
     });
+    
+    $("#saveDB").click( () => {
+      
+    });
+    
+    
    /* Buttons to fill the textarea */
    $('button.example').each( (_,y) => {
-     $(y).click( () => { dump(`${$(y).text()}.txt`); });
+     $(y).click( () => {
+       dump(`${$(y).text()}.txt`); 
+       
+     });
    });
 
     // Setup the drag and drop listeners.
