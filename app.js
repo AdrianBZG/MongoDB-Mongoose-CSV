@@ -34,7 +34,7 @@ app.listen(app.get('port'), () => {
   const util = require('util');
   const mongoose = require('mongoose');
 
-  mongoose.connect('mongodb://localhost/chuchu');
+  mongoose.connect('mongodb://localhost/csvajax1');
   const csvSchema = mongoose.Schema({ 
     "name" : String,
     "text" : String

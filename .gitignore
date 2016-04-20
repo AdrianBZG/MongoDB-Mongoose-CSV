@@ -9,3 +9,6 @@ node_modules
 
 # Ignoring temp files
 *~
+
+# Ingoring mongo
+mongo*
