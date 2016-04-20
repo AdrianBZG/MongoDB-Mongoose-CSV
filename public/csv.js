@@ -3,7 +3,7 @@
 "use strict"; // Use ECMAScript 5 strict mode in browsers that support it
 
 
-$.getScript('./dbconnections.js', function()
+$.getScript('./dbconnection.js', function()
 {
    console.log("El fichero dbconnection.js ha sido cargado correctamente");
 });
