@@ -89,7 +89,7 @@ $(document).ready(() => {
     });
     
     $("#saveDB").click( () => {
-      
+      console.log("Guardando contenido en base de datos");
     });
     
     
