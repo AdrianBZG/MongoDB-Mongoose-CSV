@@ -2,6 +2,12 @@
 (() => {
 "use strict"; // Use ECMAScript 5 strict mode in browsers that support it
 
+
+$.getScript('./dbconnections.js', function()
+{
+   console.log("El fichero dbconnection.js ha sido cargado correctamente");
+});
+
 const resultTemplate = `
 <div class="contenido">
       <table class="center" id="result">
