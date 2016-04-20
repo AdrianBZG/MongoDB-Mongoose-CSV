@@ -97,7 +97,6 @@ $(document).ready(() => {
    $('button.example').each( (_,y) => {
      $(y).click( () => {
        dump(`${$(y).text()}.txt`); 
-       
      });
    });
 

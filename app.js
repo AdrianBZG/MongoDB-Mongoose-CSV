@@ -36,14 +36,14 @@ app.listen(app.get('port'), () => {
 
   mongoose.connect('mongodb://localhost/chuchu');
   const csvSchema = mongoose.Schema({ 
-    "bottonName" : String,
+    "name" : String,
     "text" : String
   });
 
   const Csv = mongoose.model("Csv", csvSchema);
 
-  let c1 = new Csv({"rank":"ace", "suit":"spades ♠",   "chuchu": [{a: "hello", b: "world!"}]});
-  let c2 = new Csv({"rank":"2",   "suit":"hearts ♥",   "chuchu": [{a: "hola", b: "mundo"}]});
+  let c1 = new Csv({"name":"input", "text": "PEPE"});
+  let c2 = new Csv({"name":"input2", "text": "PEPE2"});
 
 
   let p1 = c1.save(function (err) {
@@ -61,3 +61,4 @@ app.listen(app.get('port'), () => {
     console.log(util.inspect(value, {depth: null}));  
     mongoose.connection.close(); 
   });
+
