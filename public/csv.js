@@ -86,7 +86,6 @@ $(document).ready(() => {
       original.value = localStorage.original;
     }
     
-    fillStoredInputs (original.value);
 
     /* AJAX request to calculate the result table */
     $("#parse").click( () => {
@@ -99,7 +98,7 @@ $(document).ready(() => {
     });
     
     $("#saveDB").click( () => {
-      fillStoredInputs (original.value);
+      
       if (window.localStorage) localStorage.original = original.value;
         $.get("/saveDB",
           { textocsv: original.value }

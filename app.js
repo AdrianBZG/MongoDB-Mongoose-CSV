@@ -41,6 +41,12 @@ app.listen(app.get('port'), () => {
     console.log(`Node app is running at localhost: ${app.get('port')}` );
 });
 
+app.get('/mongo/:ejemplo([a-zA-Z_]\w*\.csv)', function(req, res) { 
+  console.log(req.params.ejemplo); /* input1.csv */
+  /* ... Consultar la base de datos y retornar contenidos de input1.csv ... */
+});
+
+
 app.get('/cleanDB', (request, response) => {
     mongoose.connect('mongodb://localhost/csvajax1');
     

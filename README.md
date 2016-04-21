@@ -51,8 +51,8 @@ The success callback function is passed the returned data, which will be an XML 
 
 
 ## C9.IO DEPLOYMENT
-Application: https://abc.c9.io/ <br>
-Testing: https://abc.c9.io/tests
+Application: https://adrian-private-c9-adrianbzg.c9users.io/ <br>
+Testing: https://adrian-private-c9-adrianbzg.c9users.io/tests
 
 ## USED TECHNOLOGIES
 - MongoDB <br>
