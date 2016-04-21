@@ -20,6 +20,12 @@ const resultTemplate = `
 </div>
 `;
 
+const storedInputTemplate = `
+<% _.each(buttons, (theButton) => { %>
+  <button class ="storedInput" type="button"><%= name %></button>
+<% }); %>
+`;
+
 /* Dump the table result into the HTML */
 const fillTable = (data) => {
   $("#finaltable").html(_.template(resultTemplate, { rows: data.rows }));
@@ -95,11 +101,9 @@ $(document).ready(() => {
     });
     
     $("#cleanDB").click( () => {
-        $.get("/cleanDB",
-          { textocsv: original.value },
-          fillTable,
-          'json'
-        );
+      $.get("/cleanDB");
+      $("#storedButtons").empty();
+      $("#storedButtons").html('<button class ="storedInput" type="button">Me he creado</button>');
       alert("The MongoDB 'csv' database has been cleaned up!");
     });
     
@@ -108,6 +112,15 @@ $(document).ready(() => {
    $('button.example').each( (_,y) => {
      $(y).click( () => {
        dump(`${$(y).text()}.txt`); 
+     });
+   });
+   
+   /* Stored input buttons to fill the textarea */
+   $('button.storedInput').each( (_,y) => {
+     $(y).click( () => {
+       //dump(`${$(y).text()}.txt`); 
+       // El nombre del boton es ${$(y).text()}
+       // Hay que cojer la entrada en Mongo con ese nombre de la collection en texto y llamar a dump con ese texto
      });
    });
 

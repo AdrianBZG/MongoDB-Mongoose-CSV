@@ -20,6 +20,11 @@ h1 {
 		100% {background-color: #B3CAD1;}
 }
 
+#storedInputs, #storedButtons
+{
+    display:inline;
+}
+
 body {
 	animation-name: backgroundAnim;
 	animation-duration: 3s;
