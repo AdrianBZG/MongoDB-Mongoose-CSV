@@ -3,10 +3,7 @@
 "use strict"; // Use ECMAScript 5 strict mode in browsers that support it
 
 
-$.getScript('./dbconnection.js', function()
-{
-   console.log("El fichero dbconnection.js ha sido cargado correctamente");
-});
+//
 
 const resultTemplate = `
 <div class="contenido">
@@ -89,7 +86,19 @@ $(document).ready(() => {
     });
     
     $("#saveDB").click( () => {
-      console.log("Guardando contenido en base de datos");
+      if (window.localStorage) localStorage.original = original.value;
+        $.get("/saveDB",
+          { textocsv: original.value },
+          fillTable,
+          'json'
+        );
+    });
+    
+    $("#cleanDB").click( () => {
+      //mongoose.connection.db.dropCollection('csvs', function (err) {
+      //  if (err) { console.log(`Hubieron errores:\n${err}`); return err; }
+      //});
+      alert("The MongoDB 'csv' database has been cleaned up!");
     });
     
     

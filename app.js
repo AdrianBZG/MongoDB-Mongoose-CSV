@@ -1,11 +1,25 @@
 "use strict";
 
-
-
 const express = require('express');
 const app = express();
 const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
+// MongoDB
+const util = require('util');
+const mongoose = require('mongoose');
+
+// Handling MongoDB connection
+
+mongoose.connect('mongodb://localhost/csvajax1');
+const csvSchema = mongoose.Schema({ 
+  "name" : String,
+  "text" : String
+});
+
+// Creating the Model
+const Csv = mongoose.model("Csv", csvSchema);
+
+module.exports = Csv;
 
 
 app.set('port', (process.env.PORT || 5000));
@@ -30,35 +44,21 @@ app.listen(app.get('port'), () => {
     console.log(`Node app is running at localhost: ${app.get('port')}` );
 });
 
-
-  const util = require('util');
-  const mongoose = require('mongoose');
-
-  mongoose.connect('mongodb://localhost/csvajax1');
-  const csvSchema = mongoose.Schema({ 
-    "name" : String,
-    "text" : String
-  });
-
-  const Csv = mongoose.model("Csv", csvSchema);
-
-  let c1 = new Csv({"name":"input", "text": "PEPE"});
-  let c2 = new Csv({"name":"input2", "text": "PEPE2"});
-
-
+// RODO
+app.get('/saveDB', (request, response) => {
+  let c1 = new Csv({"name":"input", "text": request.query.textocsv});
+  
   let p1 = c1.save(function (err) {
     if (err) { console.log(`Hubieron errores:\n${err}`); return err; }
-    console.log(`Saved: ${c1}`);
   });
-
-  let p2 = c2.save(function (err) {
-    if (err) { console.log(`Hubieron errores:\n${err}`); return err; }
-    console.log(`Saved: ${c2}`);
-  });
-
-
-  Promise.all([p1, p2]).then( (value) => { 
+  
+  Promise.all([p1]).then( (value) => { 
     console.log(util.inspect(value, {depth: null}));  
     mongoose.connection.close(); 
   });
+
+  response.send({ "rows": calculate(request.query.textocsv) });
+});
+
+
 
