@@ -31,6 +31,11 @@ const fillTable = (data) => {
   $("#finaltable").html(_.template(resultTemplate, { rows: data.rows }));
 };
 
+/* Dump the buttons results into the HTML */
+const fillStoredInputs = (data) => {
+  $("#storedButtons").html(_.template(storedInputTemplate, { buttons: data.buttons }));
+};
+
 /* Dump into the input textarea
  * #original is the content of the fileName file */
 const dump = (fileName) => {
@@ -80,6 +85,8 @@ $(document).ready(() => {
     if (window.localStorage && localStorage.original) {
       original.value = localStorage.original;
     }
+    
+    fillStoredInputs (original.value);
 
     /* AJAX request to calculate the result table */
     $("#parse").click( () => {
@@ -92,18 +99,18 @@ $(document).ready(() => {
     });
     
     $("#saveDB").click( () => {
+      fillStoredInputs (original.value);
       if (window.localStorage) localStorage.original = original.value;
         $.get("/saveDB",
-          { textocsv: original.value },
-          fillTable,
-          'json'
+          { textocsv: original.value }
         );
     });
     
     $("#cleanDB").click( () => {
       $.get("/cleanDB");
       $("#storedButtons").empty();
-      $("#storedButtons").html('<button class ="storedInput" type="button">Me he creado</button>');
+      // No hace falta esto ya, se rellenara con fillStoredInputs
+      //$("#storedButtons").html('<button class ="storedInput" type="button">Me he creado</button>');
       alert("The MongoDB 'csv' database has been cleaned up!");
     });
     
