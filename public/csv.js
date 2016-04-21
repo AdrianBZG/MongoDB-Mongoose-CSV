@@ -44,6 +44,14 @@ const dump = (fileName) => {
   });
 };
 
+/* Dump stored input into the input textarea
+*/
+const dumpStoredInput = (fileName) => {
+  $.get("/input/" + fileName, function (data) {
+    $("#original").val(data);
+  });
+};
+
 const handleFileSelect = (evt) => {
   evt.stopPropagation();
   evt.preventDefault();
@@ -85,7 +93,7 @@ $(document).ready(() => {
     if (window.localStorage && localStorage.original) {
       original.value = localStorage.original;
     }
-    
+
 
     /* AJAX request to calculate the result table */
     $("#parse").click( () => {
@@ -98,7 +106,7 @@ $(document).ready(() => {
     });
     
     $("#saveDB").click( () => {
-      
+        
       if (window.localStorage) localStorage.original = original.value;
         $.get("/saveDB",
           { textocsv: original.value }
@@ -124,9 +132,9 @@ $(document).ready(() => {
    /* Stored input buttons to fill the textarea */
    $('button.storedInput').each( (_,y) => {
      $(y).click( () => {
-       //dump(`${$(y).text()}.txt`); 
+       //dumpStoredInput(`${$(y).text()}.txt`); 
        // El nombre del boton es ${$(y).text()}
-       // Hay que cojer la entrada en Mongo con ese nombre de la collection en texto y llamar a dump con ese texto
+       // Hay que cojer la entrada en Mongo con ese nombre de la collection en texto y llamar a dumpStoredInput con ese texto
      });
    });
 

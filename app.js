@@ -41,10 +41,17 @@ app.listen(app.get('port'), () => {
     console.log(`Node app is running at localhost: ${app.get('port')}` );
 });
 
-app.get('/mongo/:ejemplo([a-zA-Z_]\w*\.csv)', function(req, res) { 
-  console.log(req.params.ejemplo); /* input1.csv */
-  /* ... Consultar la base de datos y retornar contenidos de input1.csv ... */
+app.get('/input/:fileName', function(req, res) { 
+  console.log(fileName); /* input1.csv */
+  var file = Csv.find({name: fileName});
+  res.send(file)); 
 });
+
+app.get('/csvCount', function(req, res) {
+    Csv.find({}, function (csvs) {
+      res.send(csvs.length);
+    });
+})
 
 
 app.get('/cleanDB', (request, response) => {
@@ -56,7 +63,6 @@ app.get('/cleanDB', (request, response) => {
     });
 });
 
-// RODOLFO
 app.get('/saveDB', (request, response) => {
 
     mongoose.connect('mongodb://localhost/csvajax1');
