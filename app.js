@@ -8,18 +8,16 @@ const expressLayouts = require('express-ejs-layouts');
 const util = require('util');
 const mongoose = require('mongoose');
 
-// Handling MongoDB connection
 
-mongoose.connect('mongodb://localhost/csvajax1');
-const csvSchema = mongoose.Schema({ 
+
+// Creating CSV schema
+const CsvSchema = mongoose.Schema({ 
   "name" : String,
-  "text" : String
+  "text" : String,
 });
 
-// Creating the Model
-const Csv = mongoose.model("Csv", csvSchema);
-
-module.exports = Csv;
+  // Creating the Model
+  const Csv = mongoose.model("Csv", CsvSchema);
 
 
 app.set('port', (process.env.PORT || 5000));
@@ -44,21 +42,40 @@ app.listen(app.get('port'), () => {
     console.log(`Node app is running at localhost: ${app.get('port')}` );
 });
 
-// RODO
-app.get('/saveDB', (request, response) => {
-  let c1 = new Csv({"name":"input", "text": request.query.textocsv});
-  
-  let p1 = c1.save(function (err) {
-    if (err) { console.log(`Hubieron errores:\n${err}`); return err; }
-  });
-  
-  Promise.all([p1]).then( (value) => { 
-    console.log(util.inspect(value, {depth: null}));  
-    mongoose.connection.close(); 
-  });
-
-  response.send({ "rows": calculate(request.query.textocsv) });
+app.get('/cleanDB', (request, response) => {
+    mongoose.connect('mongodb://localhost/csvajax1');
+    
+    console.log("PEPE");
+    
+    Csv.remove({}, function (){
+      mongoose.connection.close();
+      console.log("db cleaned");
+    });
 });
+
+// RODOLFO
+app.get('/saveDB', (request, response) => {
+
+    mongoose.connect('mongodb://localhost/csvajax1');
+    let c1 = new Csv({"name":"input", "text": request.query.textocsv});
+  
+  
+    var promise;
+    c1.save(function (err) {
+      if (err) { console.log(`Hubieron errores:\n${err}`); return err; }
+      console.log(`Saved: ${c1}`);
+    }).then(promise = Csv.find({}));
+    
+    promise.then(function (doc) {
+      console.log(doc.length);
+      mongoose.connection.close();
+    })
+
+    response.send({ "rows": calculate(request.query.textocsv) }); 
+  
+});
+  
+
 
 
 

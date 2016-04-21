@@ -95,9 +95,11 @@ $(document).ready(() => {
     });
     
     $("#cleanDB").click( () => {
-      //mongoose.connection.db.dropCollection('csvs', function (err) {
-      //  if (err) { console.log(`Hubieron errores:\n${err}`); return err; }
-      //});
+        $.get("/cleanDB",
+          { textocsv: original.value },
+          fillTable,
+          'json'
+        );
       alert("The MongoDB 'csv' database has been cleaned up!");
     });
     

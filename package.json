@@ -61,7 +61,8 @@
     "express-ejs-layouts": "~1.1.0",
     "jquery": "*",
     "mongoose": "^4.4.12",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "util": "^0.10.3"
   },
   "engines": {
     "node": "4.2.1"
