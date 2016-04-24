@@ -9,6 +9,11 @@ const expressLayouts = require('express-ejs-layouts');
 const util = require('util');
 const mongoose = require('mongoose');
 
+// Connecting to the database
+mongoose.connect('mongodb://localhost/csvajax1');
+
+
+/*
 // Creating CSV schema
 const CsvSchema = mongoose.Schema({ 
   "name" : String,
@@ -17,7 +22,7 @@ const CsvSchema = mongoose.Schema({
 
 // Creating the Model
 const Csv = mongoose.model("Csv", CsvSchema);
-
+*/
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -53,6 +58,7 @@ app.get('/mongo/:entry', function(req, res) {
             DB.find({ name: files[3].name }).remove().exec();
         }
     });
+    console.log("Entry" + req.entry);
     let input = new DB({
         "name": req.entry,
         "data": req.query.content
@@ -69,7 +75,7 @@ app.get('/mongo/:entry', function(req, res) {
 
 
 app.get('/input/:fileName', function(req, res) { 
-  console.log(fileName); /* input1.csv */
+  console.log("Looking for: " + fileName); /* input1.txt*/
   var file = Csv.find({name: fileName});
   res.send(file.text); 
 });

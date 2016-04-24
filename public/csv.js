@@ -111,7 +111,7 @@ $(document).ready(() => {
         
       if (window.localStorage) localStorage.original = original.value;
         $.get("/mongo/" + fileName.value,
-          { textocsv: original.value }
+          { data: original.value }
         );
     });
     
