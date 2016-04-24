@@ -17,19 +17,19 @@
 
     // Create the three examples input
     let input1 = new DB_Model({
-        "name": "input1.csv",
+        "name": "input1.txt",
         "data": `"producto",           "precio"
                     "camisa",             "4,3"
                     "libro de O\\"Reilly", "7,2"`
     });
     let input2 = new DB_Model({
-        "name": "input2.csv",
+        "name": "input2.txt",
         "data": `"producto",           "precio"  "fecha"
                     "camisa",             "4,3",    "14/01"
                     "libro de O\\"Reilly", "7,2"     "13/02"`
     });
     let input3 = new DB_Model({
-        "name": "input3.csv",
+        "name": "input3.txt",
         "data": `"edad",  "sueldo",  "peso"
                     ,         "6000€",  "90Kg"
                     47,       "3000€",  "100Kg"`

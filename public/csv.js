@@ -90,6 +90,8 @@ const handleDragOver = (evt) => {
 
 $(document).ready(() => {
     let original = document.getElementById("original");
+    let fileName = document.getElementById("fileName");
+    
     if (window.localStorage && localStorage.original) {
       original.value = localStorage.original;
     }
@@ -108,7 +110,7 @@ $(document).ready(() => {
     $("#saveDB").click( () => {
         
       if (window.localStorage) localStorage.original = original.value;
-        $.get("/saveDB",
+        $.get("/mongo/" + fileName.value,
           { textocsv: original.value }
         );
     });

@@ -41,7 +41,7 @@ app.listen(app.get('port'), () => {
     console.log(`Node app is running at localhost: ${app.get('port')}` );
 });
 
-const DB = require('./js/db-schema');
+const DB = require('./models/db-schema');
 
 /*Creamos una entrada nueva en la BD con el nombre recibido en el request
   Si ya hay 4 entradas, se borra la última*/
