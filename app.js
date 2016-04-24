@@ -41,6 +41,33 @@ app.listen(app.get('port'), () => {
     console.log(`Node app is running at localhost: ${app.get('port')}` );
 });
 
+const DB = require('./js/db-schema');
+
+/*Creamos una entrada nueva en la BD con el nombre recibido en el request
+  Si ya hay 4 entradas, se borra la última*/
+app.get('/mongo/:entry', function(req, res) {
+    DB.find({}, function(err, files) {
+        if (err)
+            return err;
+        if (files.length > 3) {
+            DB.find({ name: files[3].name }).remove().exec();
+        }
+    });
+    let input = new DB({
+        "name": req.entry,
+        "data": req.query.content
+    });
+
+    input.save(function(err) {
+        if (err) {
+            console.log(`Errors occurs:\n${err}`);
+            return err;
+        }
+        console.log(`Saved happily: ${input}`);
+    });
+});
+
+
 app.get('/input/:fileName', function(req, res) { 
   console.log(fileName); /* input1.csv */
   var file = Csv.find({name: fileName});

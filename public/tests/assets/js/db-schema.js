@@ -13,22 +13,22 @@
     });
 
     //Creating the model based on the previously created schema
-    const Input = mongoose.model("Input", CsvSchema);
+    const DB_Model = mongoose.model("DB_Model", CsvSchema);
 
     // Create the three examples input
-    let input1 = new Input({
+    let input1 = new DB_Model({
         "name": "input1.csv",
         "data": `"producto",           "precio"
                     "camisa",             "4,3"
                     "libro de O\\"Reilly", "7,2"`
     });
-    let input2 = new Input({
+    let input2 = new DB_Model({
         "name": "input2.csv",
         "data": `"producto",           "precio"  "fecha"
                     "camisa",             "4,3",    "14/01"
                     "libro de O\\"Reilly", "7,2"     "13/02"`
     });
-    let input3 = new Input({
+    let input3 = new DB_Model({
         "name": "input3.csv",
         "data": `"edad",  "sueldo",  "peso"
                     ,         "6000€",  "90Kg"
@@ -70,5 +70,5 @@
         console.log("No se han podido crear las entradas:\n" + reason);
     });
 
-    module.exports = Input;
+    module.exports = DB_Model;
 })();
