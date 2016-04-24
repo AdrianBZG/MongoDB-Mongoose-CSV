@@ -44,7 +44,7 @@ app.listen(app.get('port'), () => {
 app.get('/input/:fileName', function(req, res) { 
   console.log(fileName); /* input1.csv */
   var file = Csv.find({name: fileName});
-  res.send(file)); 
+  res.send(file.text); 
 });
 
 app.get('/csvCount', function(req, res) {
