@@ -4,7 +4,7 @@
     const mongoose = require('mongoose');
 
     /*Creating the schema*/
-    const InputSchema = mongoose.Schema({
+    const CsvSchema = mongoose.Schema({
         "name": {
             type: String,
             unique: true
@@ -12,10 +12,10 @@
         "data": String
     });
 
-    /*Creamos el modelo de datos Input a partir del esquema ya creado*/
-    const Input = mongoose.model("Input", InputSchema);
+    //Creating the model based on the previously created schema
+    const Input = mongoose.model("Input", CsvSchema);
 
-    /*Creamos los tres ejemplos iniciales*/
+    // Create the three examples input
     let input1 = new Input({
         "name": "input1.csv",
         "data": `"producto",           "precio"
@@ -36,7 +36,7 @@
 
     });
 
-    /*Añadimos los ejemplos a la BD*/
+    // Creating promises for saving the examples
     let promise1 = input1.save(function(err) {
         if (err) {
             console.log(`Hubieron errores:\n${err}`);
@@ -61,7 +61,7 @@
         console.log(`Guardado: ${input3}`);
     });
 
-    /*Esperamos a que se creen los ejemplos*/
+    /*wait for all promises*/
     Promise.all([promise1, promise2, promise3]).then((value) => {
         console.log("Se han creado las entradas:\n" + util.inspect(value, {
             depth: null
