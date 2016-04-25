@@ -9,7 +9,7 @@
 
 ### AVISO A LOS EVALUADORES:
 
-Si no está caído el despliegue mándame un mensaje al WhatsAPP o Telegram: +34 676024363 y lo enciendo.
+Si está caído el despliegue en Cloud9 mándame un mensaje a WhatsAPP o Telegram: +34 676024363 y lo enciendo.
 También puedes mandar un Issue.
 
 ### What is MongoDB?
