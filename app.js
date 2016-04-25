@@ -44,7 +44,7 @@ app.param('entrada', function(req, res, next, entrada) {
     next();
 });
 
-const Input = require('./models/db-structure');
+const Input = require('./models/db-schema');
 
 /*Creamos una entrada nueva en la BD con el nombre recibido en el request
   Si ya hay 4 entradas, se borra la última*/
