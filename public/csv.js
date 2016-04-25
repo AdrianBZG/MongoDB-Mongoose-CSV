@@ -2,9 +2,6 @@
 (() => {
 "use strict"; // Use ECMAScript 5 strict mode in browsers that support it
 
-
-//
-
 const resultTemplate = `
 <div class="contenido">
       <table class="center" id="result">
@@ -20,34 +17,15 @@ const resultTemplate = `
 </div>
 `;
 
-const storedInputTemplate = `
-<% _.each(buttons, (theButton) => { %>
-  <button class ="storedInput" type="button"><%= name %></button>
-<% }); %>
-`;
-
 /* Dump the table result into the HTML */
 const fillTable = (data) => {
   $("#finaltable").html(_.template(resultTemplate, { rows: data.rows }));
-};
-
-/* Dump the buttons results into the HTML */
-const fillStoredInputs = (data) => {
-  $("#storedButtons").html(_.template(storedInputTemplate, { buttons: data.buttons }));
 };
 
 /* Dump into the input textarea
  * #original is the content of the fileName file */
 const dump = (fileName) => {
   $.get(fileName, function (data) {
-    $("#original").val(data);
-  });
-};
-
-/* Dump stored input into the input textarea
-*/
-const dumpStoredInput = (fileName) => {
-  $.get("/input/" + fileName, function (data) {
     $("#original").val(data);
   });
 };
@@ -124,21 +102,39 @@ $(document).ready(() => {
     });
     
     
-   /* Buttons to fill the textarea */
-   $('button.example').each( (_,y) => {
-     $(y).click( () => {
-       dump(`${$(y).text()}.txt`); 
-     });
-   });
-   
-   /* Stored input buttons to fill the textarea */
-   $('button.storedInput').each( (_,y) => {
-     $(y).click( () => {
-       //dumpStoredInput(`${$(y).text()}.txt`); 
-       // El nombre del boton es ${$(y).text()}
-       // Hay que cojer la entrada en Mongo con ese nombre de la collection en texto y llamar a dumpStoredInput con ese texto
-     });
-   });
+    /* botones para rellenar el textarea */
+    $('button.example').each((_, y) => {
+          $(y).click(() => {
+          /* Buscamos la entrada de la BD especificada por el nombre del botón
+          y colocamos el contenido de dicha entrada de la BD en el textarea*/
+          $.get("/findByName", {
+            name: $(y).text()
+          },
+          (data) => {
+          $("#original").val(data[0].content);
+        });
+      });
+    });
+        
+    /*Buscamos las entradas guardadas en la BD para mostrar los botones
+    correspondientes con su nombre asociado*/
+    $.get("/find", {}, (data) => {
+      for (var i = 0; i < 4; i++) {
+        if (data[i]) {
+          $('button.example').get(i).className = "example";
+          $('button.example').get(i).textContent = data[i].name;
+        }
+      }
+    });
+        
+    /*Guardamos una nueva entrada en la BD, con el nombre especificado
+    por el usuario.*/
+    $("#saveDB").click(() => {
+      if (window.localStorage) localStorage.original = original.value;
+      $.get("/mongo/" + $("#storedInputName").val(), {
+        content: $("#original").val()
+      });
+    });
 
     // Setup the drag and drop listeners.
     let dropZone = $('.drop_zone')[0];

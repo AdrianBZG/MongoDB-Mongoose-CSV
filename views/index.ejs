@@ -14,7 +14,7 @@
           </th>
           <th>
             <button type="button" id="parse"> Analyze</button>
-            Name: <input type="text" id="fileName" value="sample">
+            Name: <input type="text" id="storedInputName" value="sample">
             <button type="button" id="saveDB"> Save </button>
             <button type="button" id="cleanDB"> Clean DB </button>
           </th>
@@ -27,17 +27,15 @@
           <th>
             <div class="example">
               Click to load examples:
-              <button class ="example" type="button">input</button>
-              <button class ="example" type="button">input2</button>
-              <button class ="example" type="button">input3</button>
+              <button class ="example hidden" type="button">input</button>
+              <button class ="example hidden" type="button">input2</button>
+              <button class ="example hidden" type="button">input3</button>
             </div>
             <br>
             <div id="storedInputs">
             Stored inputs:
             <div class="output" id="storedButtons">
-              <button class ="storedInput" type="button">Test1</button>
-              <button class ="storedInput" type="button">Test2</button>
-              <button class ="storedInput" type="button">Test3</button>
+              <button class ="example hidden" type="button"></button>
             </div>
             </div>
             <br><br>
