@@ -13,3 +13,4 @@ node_modules
 # Ingoring mongo
 mongo*
 data*/
+mongod
