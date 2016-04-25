@@ -35,6 +35,14 @@
                     47,       "3000€",  "100Kg"`
 
     });
+    
+    let test1 = new Input({
+        "name": "test1.csv",
+        "content": `"edad",  "sueldo",  "peso"
+                    ,         "60000€",  "9000Kg"
+                    47,       "30000€",  "1000Kg"`
+
+    });
 
     /* Adding the examples to the DB */
     let promise1 = input1.save(function(err) {
@@ -60,9 +68,17 @@
         }
         console.log(`Saved: ${input3}`);
     });
+    
+    let promise4 = test1.save(function(err) {
+        if (err) {
+            console.log(`Errors occured:\n${err}`);
+            return err;
+        }
+        console.log(`Saved: ${test1}`);
+    });
 
     /* Wait until the examples are created */
-    Promise.all([promise1, promise2, promise3]).then((value) => {
+    Promise.all([promise1, promise2, promise3, promise4]).then((value) => {
         console.log("Entries have been created:\n" + util.inspect(value, {
             depth: null
         }));

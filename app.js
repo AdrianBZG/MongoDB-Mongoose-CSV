@@ -6,7 +6,6 @@ const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
 
 // MongoDB
-const util = require('util');
 const mongoose = require('mongoose');
 
 // Connecting to the database
@@ -34,21 +33,21 @@ app.listen(app.get('port'), () => {
     console.log(`Node app is running at localhost: ${app.get('port')}` );
 });
 
-/*Especificamos el formato del nombre de los ficheros de entrada*/
-app.param('entrada', function(req, res, next, entrada) {
-    if (entrada.match(/^[a-z_]\w*\.csv$/i)) {
-        req.entrada = entrada;
+/* Specifying the name of the format for the file names */
+app.param('entry', function(req, res, next, entry) {
+    if (entry.match(/^[a-z_]\w*\.csv$/i)) {
+        req.entry = entry;
     } else {
-        next(new Error(`<${entrada}> no casa con los requisitos de 'entrada'`));
+        next(new Error(`<${entry}> is not an allowed format`));
     }
     next();
 });
 
 const Input = require('./models/db-schema');
 
-/*Creamos una entrada nueva en la BD con el nombre recibido en el request
-  Si ya hay 4 entradas, se borra la última*/
-app.get('/mongo/:entrada', function(req, res) {
+/* Create a new entry in the DB with the given name on the request
+   If already 4 entries exists, we delete the last one */
+app.get('/mongo/:entry', function(req, res) {
     Input.find({}, function(err, docs) {
         if (err)
             return err;
@@ -57,20 +56,20 @@ app.get('/mongo/:entrada', function(req, res) {
         }
     });
     let input = new Input({
-        "name": req.entrada,
+        "name": req.entry,
         "content": req.query.content
     });
 
     input.save(function(err) {
         if (err) {
-            console.log(`Hubieron errores:\n${err}`);
+            console.log(`Error occurred:\n${err}`);
             return err;
         }
-        console.log(`Guardado: ${input}`);
+        console.log(`Saved: ${input}`);
     });
 });
 
-/*Se devuelve un array con todas las entradas de la BD como respuesta*/
+/* Returning an array with all the entries that the DB has as response */
 app.get('/find', function(req, res) {
     Input.find({}, function(err, docs) {
         if (err)
@@ -79,8 +78,7 @@ app.get('/find', function(req, res) {
     });
 });
 
-/*Se devuelve como respuesta la entrada correspondiente al nombre
-  especificado en la request*/
+/* Returning as a response the entry corresponding to the specified name on the request */
 app.get('/findByName', function(req, res) {
     Input.find({
         name: req.query.name
@@ -91,10 +89,7 @@ app.get('/findByName', function(req, res) {
 
 
 app.get('/cleanDB', (request, response) => {
-    mongoose.connect('mongodb://localhost/csvajax1');
-    
     Input.remove({}, function (){
-      mongoose.connection.close();
       console.log("db cleaned");
     });
 });

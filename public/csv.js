@@ -88,8 +88,8 @@ $(document).ready(() => {
     $("#saveDB").click( () => {
         
       if (window.localStorage) localStorage.original = original.value;
-        $.get("/mongo/" + fileName.value,
-          { data: original.value }
+        $.get("/mongo/" + $("#storedInputName").val(),
+          { content: original.value }
         );
     });
     
